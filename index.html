@@ -1,10 +1,16 @@
 <!doctype html>
 <html lang="en-US">
   <head>
-    <title>Backbone Model Project</title>
     <meta charset="UTF-8" />
+
+    <title>Backbone Model Project</title>
+
     <link rel="stylesheet" href="stylesheets/page.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <script src="javascripts/underscore.js"></script>
+    <script src="javascripts/backbone.js"></script>
+    <script src="javascripts/jquery-3.4.1.js"></script>
+    <script src="javascripts/handlebars-v4.1.2.js"></script>
   </head>
   <body>
     <main>
@@ -19,14 +25,17 @@
     <script id="product" type="text/x-handlebars">
       <header>
         <h1>{{name}}</h1>
-        <p>Last modified <time datetime="{{datetime}}">{{date_formatted}}</time></p>
+        <p>Last modified <time datetime="{{datetime}}">{{dateFormatted}}</time>
+        </p>
       </header>
+
       {{description}}
+
       <footer>
         <h3>Categories</h3>
         <ul>
           {{#each categories}}
-          <li>{{.}}
+            <li>{{.}}</li>
           {{/each}}
         </ul>
       </footer>
@@ -34,21 +43,33 @@
 
     <script id="form" type="text/x-handlebars">
       <dl>
-        <dt><label for="name">Name</label></dt>
-        <dd><input type="text" name="name" value="{{name}}" /></dd>
-        <dt><label for="description">Description</label></dt>
-        <dd><textarea rows="6" cols="80" name="description">{{description}}</textarea></dd>
+        <dt>
+          <label for="name">Name</label>
+        </dt>
+        <dd>
+          <input type="text" id="name" name="name" value="{{name}}" />
+        </dd>
+
+        <dt>
+          <label for="description">Description</label>
+        </dt>
+        <dd>
+          <textarea id="description" name="description" rows="6" cols="80">{{description}}</textarea>
+        </dd>
       </dl>
+
       <input type="submit" value="Update" />
     </script>
 
     <script>
-      var product_json = {
-        "name": "Bananas",
-        "date": (new Date()).valueOf(),
-        "description": "A fruit, usually yellow or green, with a soft flesh and a thick rind that is peeled off before consuming.",
-        "categories": ["fruit", "berry", "starch", "potassium"]
+      const productJSON = {
+        name: 'Bananas',
+        date: (new Date()).valueOf(),
+        description: 'A fruit, usually yellow or green, with a soft flesh and a thick rind that is peeled off before consuming.',
+        categories: ['fruit', 'berry', 'starch', 'potassium'],
       };
     </script>
+
+    <script src="javascripts/application.js"></script>
   </body>
 </html>
