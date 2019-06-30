@@ -6,7 +6,6 @@ $("[type='text/x-handlebars']").each(function () {
   templates[$template.attr('id')] = Handlebars.compile($template.html());
 });
 
-
 function formatDatetime(datetime) {
   const year = datetime.getFullYear();
   const month = datetime.getMonth() + 1;
@@ -69,4 +68,28 @@ function renderProduct() {
   $('article').html(templates.product(product.toJSON()));
 }
 
+function renderForm() {
+  $('fieldset').html(templates.form(product.toJSON()));
+}
+
 renderProduct();
+renderForm();
+
+$('form').on('submit', function (e) {
+  e.preventDefault();
+  const inputs = $(this).serializeArray();
+  const datetime = new Date();
+  const attrs = {};
+
+  inputs.forEach(function (input) {
+    attrs[input.name] = input.value;
+  });
+
+  attrs.datetime = formatDatetime(datetime);
+  attrs.dateFormatted = formatDate(datetime);
+  attrs.date = datetime.valueOf();
+
+  product.set(attrs);
+
+  renderProduct();
+});
