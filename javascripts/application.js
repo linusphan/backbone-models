@@ -29,7 +29,7 @@ function formatDate(datetime) {
   let dateSuffix = 'th';
 
   const year = datetime.getFullYear();
-  const month = datetime.getMonth() + 1;
+  const month = datetime.getMonth();
   const date = datetime.getDate();
   const hours = datetime.getHours();
   const minutes = datetime.getMinutes();
