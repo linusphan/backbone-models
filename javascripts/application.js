@@ -26,7 +26,7 @@ function formatDate(datetime) {
   ];
 
   const suffixOverrides = ['st', 'nd', 'rd'];
-  const dateSuffix = 'th';
+  let dateSuffix = 'th';
 
   const year = datetime.getFullYear();
   const month = datetime.getMonth() + 1;
